@@ -270,7 +270,7 @@ const changeTicketsPerPage = (newTicketsPerPage) => {
 
         {/* Tickets List */}
         <div className="overflow-x-auto">
-          <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
+          <div className="min-w-screen bg-gray-100 mx-2 flex items-center justify-center font-sans overflow-hidden">
             <div className="w-full">
               {currentTickets.map((ticket, index) => (
                 <div key={ticket.id}>
