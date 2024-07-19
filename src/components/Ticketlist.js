@@ -72,7 +72,7 @@ const TicketList = () => {
       source: newTicketSource,
       description: newTicketDescription,
       priority: newTicketPriority,
-      date: new Date().toISOString().slice(0, 10),
+      date: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }).slice(0, 19),
     };
     dispatch(createTicket(newTicket));
     updateLocalStorage([...tickets, newTicket]);
@@ -91,7 +91,7 @@ const TicketList = () => {
       source: newTicketSource,
       description: newTicketDescription,
       priority: newTicketPriority,
-      date: new Date().toISOString().slice(0, 10),
+      date: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }).slice(0, 19),
     };
     dispatch(updateTicket(updatedTicket));
     // Update details ticket if it's the same ticket being updated
@@ -169,17 +169,24 @@ const TicketList = () => {
     return false;
   });
  
-
- // Function to handle sorting tickets by date
-const sortedTickets = [...filteredTickets].sort((a, b) => {
-  if (dateFilter === 'newest') {
-    return new Date(b.date) - new Date(a.date);
-  } else if (dateFilter === 'oldest') {
-    return new Date(a.date) - new Date(b.date);
-  } else {
-    return 0; // No sorting
-  }
-});
+  const sortedTickets = [...filteredTickets].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+  
+    if (dateFilter === 'newest') {
+      // Sort by descending order of timestamp
+      return dateB - dateA;
+    } else if (dateFilter === 'oldest') {
+      // Sort by ascending order of timestamp
+      return dateA - dateB;
+    } else {
+      // No sorting
+      return 0;
+    }
+  });
+  
+  
+  
 
 // Pagination logic
 const indexOfLastTicket = currentPage * ticketsPerPage;
