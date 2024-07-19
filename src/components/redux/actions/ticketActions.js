@@ -5,7 +5,7 @@ export const CREATE_TICKET_SUCCESS = 'CREATE_TICKET_SUCCESS';
 export const UPDATE_TICKET_SUCCESS = 'UPDATE_TICKET_SUCCESS';
 export const DELETE_TICKET_SUCCESS = 'DELETE_TICKET_SUCCESS';
 
-const JSON_URL = 'http://localhost:3000/tickets.json'; // Replace with your JSON API endpoint
+const JSON_URL = '/tickets.json'; // Replace with your JSON API endpoint
 
 export const fetchTickets = () => {
   return async (dispatch) => {
